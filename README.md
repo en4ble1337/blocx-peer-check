@@ -1,5 +1,5 @@
 
-# Docker Peer Monitoring and Restart Script 🐳
+# Docker Peer Monitoring and Restart Script
 
 This script automatically monitors a Docker container's log output for a specific peer count. If the peer count is not equal to the desired number (in this case, 3), it gracefully restarts the Docker Compose services and creates a log entry detailing the failure.
 
@@ -36,7 +36,7 @@ if [ "$PEER_COUNT" -ne 3 ]; then
 fi
 ```
 Here is the complete with log on success (optional) `peer_check.sh` script.
-```
+```bash
 #!/bin/bash
 
 # Navigate to the Docker Compose directory
