@@ -24,15 +24,7 @@ PEER_COUNT=$(docker logs blocx-validator-setup-beacon-1 2>&1 | grep -o 'peers: [
 if [ "$PEER_COUNT" -ne 3 ]; then
     # Append a timestamped log entry indicating failure
     echo "$(date): Peer count is $PEER_COUNT, which is not 3. Restarting the services." >> "$LOG_FILE"
-
-    # 1. Bring the services down
-    docker compose -f compose-validator.yaml down
-
-    # 2. Wait for 10 seconds to ensure a clean shutdown
-    sleep 10
-
-    # 3. Bring the services back up in detached mode
-    docker compose -f compose-validator.yaml up -d
+    reboot
 fi
 ```
 Here is the complete with log on success (optional) `peer_check.sh` script.
@@ -53,9 +45,7 @@ PEER_COUNT=$(docker logs blocx-validator-setup-beacon-1 2>&1 | grep -o 'peers: [
 if [ "$PEER_COUNT" -ne 3 ]; then
     # Log the failure and restart
     echo "$(date): Peer count is $PEER_COUNT, which is not 3. Restarting services." >> "$FAIL_LOG"
-    docker compose -f compose-validator.yaml down
-    sleep 10
-    docker compose -f compose-validator.yaml up -d
+    reboot
 else
     # Log the success
     echo "$(date): Peer check successful. Found $PEER_COUNT peers." >> "$SUCCESS_LOG"
