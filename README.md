@@ -1,4 +1,3 @@
-Of course. Here is the script and its explanation formatted in GitHub-friendly Markdown.
 
 # Docker Peer Monitoring and Restart Script 🐳
 
